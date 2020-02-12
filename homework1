@@ -1,0 +1,57 @@
+1. The most obvious metric is to test your given system on a new sample of data that has whether or not the applicant repayed their loan. If we consistently see that those applicants who are assigned high credit scores repay their loans and those with low credit scores don't, then it is an okay system. This metric can be formalized as the linear relationship between % of loans repayed and the credit score. We would want a highly correlated, positive relationship between these two variables. 
+
+Secondly, we must account for the bias that is likely present in the dataset that both trained the machine learning algorithm and was used to test its effectiveness in the previous metric. If we assume that the data used to train and test the model was data that came from historic applicant and loan repayment information with the loan decision made by humans, we can conclude that there is human bias. In the realm of financial services, its likely that the bias is salient along the dimension of race. There are two ways one could go about creating a metric to correct for this. They could use a multivariate linear model to assess the relationship between race and the credit score, correcting for relevant variables like historic repayment, income stability, etc. If the relationship is statistically insignificant, it means that race isn't independently a source of bias. Therefore, the statistical signficance of race in such a model could be one metric.
+
+However, if we broaden our understanding of racism into a systematic, historical understanding, then we can see that this may not be quite enough. The relationship between race and socioeconomic stability (and hence ability to repay loans) is signficant in the US. Therefore, the use of variables such as historic repayment and income stability as predictors of loans, is already racially biased. Therefore, it may be better to aim for expected outcomes, if it were true that there was no systematic racism. For instance, one could aim for having equal average credit scores across racial categories. A possible metric then could be the variation of mean credit scores across racial categories. We would aim to minimize it. Of course, this would likely make the algorithm worse at actually predicting future loan repayment but, nevertheless, it's probably the most equitable thing to do.
+
+2. I think the algorithm should be evaluated in light of both the first and last metric and that some balance must be struck between the two. Obviously, it is most practical for the interest of the company to optimize the first metric while it is likely the most ethical option to optimize the last. It's even possible that using the second metric makes for a useful middle ground. It really depends on the situation one is in.
+
+3. This page uses thresholds or cut off credit scores that determine whether or not an applicant will get a loan. Additionally, it has a few different strategies to approaching groups with different loan repayment histories. They're metrics are different then mine in that they are using metrics for using the credit score to determine loan offerings, post-credit score production while my metrics would aim to alter the credit score itself. However, the spirit of their two types of metrics align with mine. Additionally, they use profit as a metric.
+
+4. The threshold of 48 maximizes correct decisions and minimizes incorrect decisions. 
+
+5. A threshold of 56 maximizes profit.
+
+6. They're not because false positives are costly, at $700, and false negatives are not as costly, at lost opportunity of $300. Therefore, it's better to raise the threshold in order to avoid the more costly incorrect decisions.
+
+7. a. The profit-maximizer would decrease because the cost of false positives decreases and and the cost of false negatives increases. Therefore, there is less incentive to fervently avoid false positives by raising the threshold. 
+
+b. It wouldn't change if you are maximizing correct decisions.
+
+8. a. The orange people, as a whole, have a less normal shape with a lesser concetration in the middle and is centered at  lower credit score. This means there is larger variation amongst the orange group and they have lower average scores. However, they have an identical distribution of the group that would pay back loans, albeit, centered at a lower score. This indicates that it's more likely that a you will get false positives for the blue group and false negatives for the orange group at any given threshold.
+
+b. You could have a line down the middle at the credit score of 50 as it isn't immediately obvious that the two groups are centered differently. Additionally, you could have the option to overlay the aggregate distributions and subsets of each group over each other. 
+
+c. I guess one could say the credit score "does better" for the blue group because those that would pay back have higher credit scores. However, on the flip side, it "does better" for the orange group because those that wouldn't pay back have a lower credit score. 
+
+9. a. 61 for the blue group and 50 for the orange group
+
+b. The orange group
+
+c. The orange group
+
+d. 32400
+
+e. It really depends on what the cause is of the difference between the groups. However, it seems that since those who would pay back have lower credit scores in the orange group than in the blue group, the difference is not relevant to the actual repayment expectations. Therefore, this indicates that the credit score is biased. Therefore, lowering the credit threshold for the orange group is a way to correct that bias. The profit maximizing strategy does just that so, insofar as it corrects the bias present in the credit score, it is more fair than having the same threshold for each. 
+
+f. a. 55 for both groups
+
+b. The blue group
+
+c. Orange group
+
+d. 25600
+
+e. This is much less fair because it doesn't correct for any of the bias that is, presumably, in the credit score. Additionally, insofar as we want to take company shareholders into account, it's unfair to lower profits without a justifiable reason.
+
+11. a. The true positive rate increases from 60% to 92%
+
+b. The banks profit goes from 25600 to 26100-26900.
+
+c. I think this is probably better but still not ideal. The maximizing profit strategy was better because there are too many people receiving loans that are failing to pay them which is ultimately bad for the applicants, the company, and the shareholders.
+
+12. The demographic parity metric is similar to my 3rd proposed metric where you aim for outcomes that would be expected if we assumed there was no difference between the groups. The equal opportunity is modification on that in that it focuses on equal outcomes for a subset of each of these groups. In this context, I think it does little good to opt for the equal opportunity optimization instead of the demographic parity option because it has no effect on the blue group, it negatively effects the orange group, and negativelly effects the profits. There could be other situations in which the equal opportunity option is better, but not here as the authors seem to imply.
+
+13. I think the best option amongst the four presented in this page is the profit-maximizing strategy with the second best being demographic parity. However, this is only a conclusion I would make about this particular scenario, and would avoid generalizing. I think the profit-maximizing strategy is better than the demographic parity because it allows 1 less person to get a loan who won't pay it back, it maximizes profits, and it allows 3 more people to get loans who will pay them back. So, if we assume it is a bad thing for someone to get a loan who isn't able to pay it back, which I think it is bad for both the receiver and giver of the loan, then the profit-maximizing strategy is better on all relevant accounts. The one counter argument is that the profit maximizing strategy reduces the true positives of the blue group by 4 while raising the true positives of the orange group by 7. So it is a relatively advantageous for the orange group.
+
+14. Fairness doesn't just mean to treat different groups the same, it means you must identify present bias and correct for it, which requires additional effort.
